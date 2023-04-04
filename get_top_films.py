@@ -2390,14 +2390,14 @@ imdb_rank = [
 ]
 
 
-def movie_description(min_rating):
+def movie_description(film):
     f_list = []
     for i in imdb_rank:
-        if float(i['rating']) >= 8.5:
-            f_list.append(i['title'])
-        return (choice(f_list))
+        if float(i["rating"]) >= film:
+           f_list.append(i["title"])
+    return (choice(f_list))
 
 
 print(movie_description(8.2))
 
-print(count_words(8.2))
+print(count_words(movie_description(8.2)))
