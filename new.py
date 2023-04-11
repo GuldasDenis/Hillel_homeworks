@@ -38,24 +38,6 @@ films_titles = {
     ]
 }
 
-# # Створюємо теку "Harry Potter", якщо вона не існує
-# if not os.path.exists("Harry Potter"):
-#     os.mkdir("Harry Potter")
-#
-# # Створюємо теки для кожної частини фільму
-# for film in films_titles["results"]:
-#     film_title = film["title"].replace(":", "_").replace("'", "_")
-#     film_path = os.path.join("Harry Potter", film_title)
-#
-#     if not os.path.exists(film_path):
-#         os.mkdir(film_path)
-#
-#     # Створюємо теки від A до Z
-#     for letter in string.ascii_uppercase:
-#         letter_path = os.path.join(film_path, letter)
-#
-#         if not os.path.exists(letter_path):
-#             os.mkdir(letter_path)
 
 films_awards = [{'links': {'next': None, 'previous': None},
                  'count': 49,
