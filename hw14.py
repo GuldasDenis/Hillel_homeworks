@@ -1217,16 +1217,15 @@ for result in ganres_json['results']:
     writer = csv.writer(csv_file)
     writer.writerow(['title', 'year', 'rating', 'type', 'genres'])
 
-    # sorted_films = {}
-    # for genre in ganres:
-    #     sorted_films[genre] = [film for film in films_data if genre in [gen['genre'] for gen in film['gen']]]
-    #
-    # with open(csv_file_path, 'a', newline='') as csv_file:
-    #     writer = csv.DictWriter(csv_file, fieldnames=fieldnames)
-    #     for genre, films in sorted_films.items():
-    #         for film in films:
-    #             writer.writerow({'title': film['title'], 'year': film['year'], 'rating': film['rating'],
-    #                              'type': film['type'], 'genres': ', '.join(gen['genre'] for gen in film['gen'])})
+    for movie in result['movies']:
+     title = movie['title']
+     year = movie['year']
+     rating = movie['rating']
+     movie_type = movie['type']
+     genres = movie['genres']
+     writer.writerow([title, year, rating, movie_type, genres])
 
+    csv_file.close()  # Close file after writing
+    print(f"Created CSV file: {csv_file_path}")
 
-
+    
