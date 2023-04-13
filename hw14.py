@@ -1213,11 +1213,9 @@ for result in ganres_json['results']:
     print(f"Створено директорію: {genre}")
 
     csv_file_path = os.path.join(genre_directory, 'movies.csv')
-    with open(csv_file_path, 'w', newline='') as csv_file:
-        fieldnames = ['title', 'year', 'rating', 'type', 'genres']
-        writer = csv.writer(csv_file)
-        writer.writerow(['title', 'year', 'rating', 'type', 'genres'])
-    print(f"Створено CSV-файл: {csv_file_path}")
+    csv_file = open(csv_file_path, 'w', newline='')
+    writer = csv.writer(csv_file)
+    writer.writerow(['title', 'year', 'rating', 'type', 'genres'])
 
     # sorted_films = {}
     # for genre in ganres:
