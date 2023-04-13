@@ -1202,6 +1202,9 @@ films_data = [{'imdb_id': 'tt0120601',
                             {'id': 7525, 'keyword': 'popsicle'},
                             {'id': 7526, 'keyword': 'fake kidnapping'}]}]
 
+#Для кожного жанру у змінній ganres створіть окрему дерикторію.
+# Просто прибрати лапки для перетворення типу данних - ЗАБОРОНЕНО.
+
 ganres_json = json.loads(ganres)
 
 if not os.path.exists('parent_directory'):
@@ -1214,10 +1217,17 @@ for result in ganres_json['results']:
         os.makedirs(genre_directory)
     print(f"Створено директорію: {genre}")
 
+    # В кожній папці з жанорм створіть CSV файл, він буде зберігати інформацію про фільми.
+    # Файл має мати колонки: title year rating type ganres
+
     csv_file_path = os.path.join(genre_directory, 'movies.csv')
     csv_file = open(csv_file_path, 'w', encoding='utf-8')
     writer = csv.writer(csv_file)
     writer.writerow(['title', 'year', 'rating', 'type', 'genres'])
+
+    # Відсортуй фільми у змінній films_data по жанрам. Тобто у файл csv з жанром запиши інформацію для кожнної колонки.
+    # Зверни увагу, що жанрів може бути кілька, тоді треба записати фільм у кілька CSV файлів
+    # при цьому колонка ganres має містити всі жанри фільму.
 
     for film in films_data:
         if genre in [g['genre'] for g in film['gen']]:
