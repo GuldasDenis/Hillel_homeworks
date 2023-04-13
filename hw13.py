@@ -1,9 +1,6 @@
 import os
 import string
 
-
-
-
 films_titles = {
     "results": [
         {
@@ -3808,12 +3805,13 @@ films_awards = [{'links': {'next': None, 'previous': None},
                               'award_name': 'World Soundtrack Award',
                               'award': 'Discovery of the Year'}]}]
 
-
-import os
-import string
-
+# Крок 1
+# Створіть за допомогою модуля OS дерикторію "Harry Potter". В середині дерикторії Harry Potter створіть 8 дерикторій з назвою кожної частни. (Є прихований код)
 if not os.path.exists("Harry Potter"):
     os.mkdir("Harry Potter")
+
+# Крок 2
+# В середині дерикторій кожної частини фільму створіть теки(дерикторії) від A до Z. Використовуйте модуль OS.
 
 for film in films_titles["results"]:
     film_title = film["title"].replace(":", "_").replace("'", "_")
@@ -3827,6 +3825,10 @@ for film in films_titles["results"]:
 
         if not os.path.exists(letter_path):
             os.mkdir(letter_path)
+# Крок 3
+# (Є прихований код) Для кожного фільму створіть новий список,
+# він має зберігати словники з ключем award_name та його значенням,
+# ключем award та його значенням, ключем type та його значенням.
 
 title_list = []
 for film in films_titles['results']:
@@ -3841,6 +3843,13 @@ for film in films_titles['results']:
                 })
     title_list.append(temp_dict)
 
+# Крок 4
+# Відсортуйте кожен список з нагородами за алфавітом по ключу award_name. Використай sorted та lambda функції.
+# Крок 5
+# Для кожного фільму у теках з літерами від A до Z створи txt файл з назвою(ключ award_name) нагороди яка починаєтья на відповідну літеру.
+# Крок 6
+# У файл з ім'ям кожної нагороди перенеси всі назви номінацій цієї(award) нагороди.
+
 
 for i in title_list:
     i['awards'] = sorted(i['awards'], key=lambda x: x['award_name'])
@@ -3851,4 +3860,3 @@ for i in title_list:
         file_path = os.path.join(folder_path, f'{j["award_name"]}.txt')
         file_award = open(file_path, 'w')
         file_award.close()
-
