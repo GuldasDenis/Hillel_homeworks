@@ -3843,6 +3843,7 @@ for film in films_titles['results']:
 
 
 for i in title_list:
+    i['awards'] = sorted(i['awards'], key=lambda x: x['award_name'])
     for j in i['awards']:
         first_letter_award_name = j['award_name'][0]
         folder_path = f'Harry Potter/{i["title"]}/{first_letter_award_name}'
