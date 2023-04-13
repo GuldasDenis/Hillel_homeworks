@@ -1204,16 +1204,13 @@ films_data = [{'imdb_id': 'tt0120601',
 
 ganres_json = json.loads(ganres)
 
-parent_directory = 'genres'
-os.makedirs(parent_directory)
-print(f"Створено батьківську директорію: {parent_directory}")
+os.mkdir('parent_directory')
 
 for result in ganres_json['results']:
     genre = result['genre']
-    genre_directory = os.path.join(parent_directory, genre)
+    genre_directory = os.path.join('parent_directory', genre)
     os.makedirs(genre_directory)
     print(f"Створено директорію: {genre}")
-
 
     csv_file_path = os.path.join(genre_directory, 'movies.csv')
     with open(csv_file_path, 'w', newline='') as csv_file:
@@ -1222,18 +1219,6 @@ for result in ganres_json['results']:
         writer.writeheader()
     print(f"Створено CSV-файл: {csv_file_path}")
 
-
-    sorted_films = {}
-    for genre in ganres:
-        sorted_films[genre] = [film for film in films_data if genre in [gen['genre'] for gen in film['gen']]]
-
-
-    with open(csv_file_path, 'a', newline='') as csv_file:
-        writer = csv.DictWriter(csv_file, fieldnames=fieldnames)
-        for genre, films in sorted_films.items():
-            for film in films:
-                writer.writerow({'title': film['title'], 'year': film['year'], 'rating': film['rating'],
-                                 'type': film['type'], 'genres': ', '.join(gen['genre'] for gen in film['gen'])})
 
 
 
